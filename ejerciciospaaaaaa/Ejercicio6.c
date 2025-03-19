@@ -8,18 +8,18 @@ main(){
 		scanf("%d",&num);
 		if(num!=0){
 			cant++;
-				for(i = 1 ; i < num ; i++){
-			        if(num % i == 0){
-			            divisores++;
-			   		}
-			    }
-			    if(divisores>1){
-			    	noPrimo++;
+			for(i = 1 ; i < num ; i++){
+		        if(num % i == 0){
+	            divisores++;
 				}
-				else{
-					primo++;
-				}
-				divisores=0;
+			}
+			if(divisores>1){
+		    	noPrimo++;
+			}
+			else{
+				primo++;
+			}
+			divisores=0;
 		}
 	}while(num!=0);
 	printf("\nSe ingresaron %d numeros, de los cuales %d eran primos y %d no primos.",cant,primo,noPrimo);
