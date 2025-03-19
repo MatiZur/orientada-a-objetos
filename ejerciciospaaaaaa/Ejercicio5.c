@@ -1,24 +1,17 @@
 #include <stdio.h>
-int numero, esPrimo=1, i;
+int num, i, divisores=0;
 
 main(){
 	printf("Ingrese un numero: ");
-	scanf("%d",&numero);
-    if(numero<=1){
-    	esPrimo = 0;
-    }
-	else{
-        for(i = 2 ; i * i <= numero ; ++i){
-            if(numero%i==0){
-                esPrimo=0;
-                break;
-            }
-        }
+	scanf("%d",&num);
+    for(i = 1 ; i < num ; i++){
+        if(num % i == 0){
+            divisores++;
+   		}
     }
     printf("\nEl numero ");
-    if(esPrimo==0){
+    if(divisores>1){
     	printf("no ");
 	}
     printf("es primo");
 }
-
