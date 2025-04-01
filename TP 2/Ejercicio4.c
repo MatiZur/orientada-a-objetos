@@ -18,9 +18,9 @@ main(){
 	}
 	printf("\n");
 	if(cambio==1){
-		printf("La nueva cadena es: %s",cadena);
+		printf("La nueva cadena es: %s.",cadena);
 	}
 	else{
-		printf("No se encontro la letra a reemplazar");
+		printf("No se encontro la letra a reemplazar.");
 	}
 }
