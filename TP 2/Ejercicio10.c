@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <string.h>
-int i;
-char cadena1[999], cadena2[999], *comp;
+char cadena1[999], cadena2[999];
 
 main(){
 	printf("Ingrese una cadena larga: ");
@@ -10,11 +9,13 @@ main(){
 	printf("Ingrese una cadena mas corta: ");
 	fgets(cadena2, sizeof(cadena2), stdin);
 	cadena2[strcspn(cadena2,"\n")]='\0';
+	char *comp;
 	comp = strstr(cadena1, cadena2);
-	if(comp != NULL){
-		printf("La subcadena \"%s\" se encuentra en la cadena \"%s\" en la posicion %d",cadena2,cadena1,comp);
+	printf("\n");
+	if (comp != NULL){
+		printf("La subcadena \"%s\" se encuentra en la cadena \"%s\" en la posicion %d.", cadena2, cadena1, comp - cadena1);
 	}
 	else{
-		printf("La subcadena \"%s\" no se encuentra en la cadena \"%s\".",cadena2,cadena1);
+		printf("La subcadena \"%s\" no se encuentra en la cadena \"%s\".", cadena2, cadena1);
 	}
 }
