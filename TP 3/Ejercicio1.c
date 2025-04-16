@@ -1,23 +1,20 @@
 #include <stdio.h>
 
-void invertir(float *a, float *b){
-	float aux;
-	
+void invertir(int *a, int *b){
+	int aux;
 	aux=*a;
 	*a=*b;
 	*b=aux;
-	printf("\nLos valores invertidos son:\nValor 1: %f | Valor 2: %f",*a,*b);
 }
 
 int main(){
-	float a, b;
-	
+	int a, b;
 	printf("Ingrese un valor: ");
-	scanf("%f",&a);
+	scanf("%d",&a);
 	printf("Ingrese otro valor: ");
-	scanf("%f",&b);
-	printf("\nLos valores originales son:\nValor 1: %f | Valor 2: %f",a,b);
+	scanf("%d",&b);
+	printf("\nLos valores originales son:\nValor 1: %d | Valor 2: %d",a,b);
 	invertir(&a,&b);
-	
+	printf("\nLos valores invertidos son:\nValor 1: %d | Valor 2: %d",a,b);
 	return 0;
 }
