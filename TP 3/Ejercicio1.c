@@ -1,8 +1,7 @@
 #include <stdio.h>
 
 void invertir(int *a, int *b){
-	int aux;
-	aux=*a;
+	int aux=*a;
 	*a=*b;
 	*b=aux;
 }
