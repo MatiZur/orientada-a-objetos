@@ -14,6 +14,6 @@ int main(){
 	scanf("%d",&b);
 	printf("\nLos valores originales son:\nValor 1: %d | Valor 2: %d",a,b);
 	invertir(&a,&b);
-	printf("\nLos valores invertidos son:\nValor 1: %d | Valor 2: %d",a,b);
+	printf("\n\nLos valores invertidos son:\nValor 1: %d | Valor 2: %d",a,b);
 	return 0;
 }
