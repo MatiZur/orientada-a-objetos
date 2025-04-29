@@ -3,52 +3,43 @@
 FILE *archivo;
 
 void carga(int usado) {
-    int cant, i, repetido = 0, j, dniL;
+    int cant, i, repetido = 0, j;
     char nombre[99], apellido[99];
-    FILE *archivo = fopen("datos.txt", "r");
-    if (archivo == NULL) {
-        printf("Error al abrir el archivo original.\n");
+    int dni;
+
+    FILE *nuevo_archivo = fopen("datos_nuevo.txt", "a+");
+    if (nuevo_archivo == NULL) {
+        printf("Error al abrir el archivo nuevo para agregar datos.\n");
         return;
     }
+
     int dniExistente[100];
     int cantExistente = 0;
-    FILE *nuevo_archivo = fopen("datos_nuevo.txt", "a");
-	if (nuevo_archivo == NULL) {
-	    printf("Error al abrir el archivo nuevo para agregar datos.\n");
-	    fclose(archivo);
-	    return;
-	}
-	FILE *nuevo_archivoR = fopen("datos_nuevo.txt", "r");
-	while (fscanf(nuevo_archivoR, "%s %s %d", nombre, apellido, &dniL) != EOF) {
-		if(usado==0){
-	    	fprintf(nuevo_archivo, "%s %s %d\n", nombre, apellido, dniL);
-		}
-	    dniExistente[cantExistente] = dniL;
-	    cantExistente++;
-	}
-    fclose(nuevo_archivoR);
+    rewind(nuevo_archivo);
+    while (fscanf(nuevo_archivo, "%s %s %d", nombre, apellido, &dni) != EOF) {
+        dniExistente[cantExistente] = dni;
+        cantExistente++;
+    }
+
     printf("\nIngrese la cantidad de personas a registrar: ");
     scanf("%d", &cant);
-    int dni[cant];
     for (i = 0; i < cant; i++) {
-        printf("\nIngrese el nombre: ");
-        scanf("%s", nombre);
-        printf("Ingrese el apellido: ");
-        scanf("%s", apellido);
+        printf("\nIngrese el nombre y apellido: ");
+        scanf("%s %s", nombre, apellido);
         do {
             repetido = 0;
             printf("Ingrese el DNI: ");
-            scanf("%d", &dni[i]);
+            scanf("%d", &dni);
             for (j = 0; j < cantExistente; j++) {
-                if (dni[i] == dniExistente[j]) {
+                if (dni == dniExistente[j]) {
                     printf("\nEl DNI ingresado ya existe. Ingrese uno distinto.\n\n");
                     repetido = 1;
                     break;
                 }
             }
-        } while (repetido == 1);
-        fprintf(nuevo_archivo, "%s %s %d\n", nombre, apellido, dni[i]);
-        dniExistente[cantExistente] = dni[i];
+        } while (repetido);
+        fprintf(nuevo_archivo, "%s %s %d\n", nombre, apellido, dni);
+        dniExistente[cantExistente] = dni;
         cantExistente++;
     }
     fclose(nuevo_archivo);
@@ -58,7 +49,7 @@ void carga(int usado) {
 void lectura(){
     archivo = fopen("datos_nuevo.txt", "r");
     if(archivo == NULL){
-    	archivo = fopen("datos.txt", "r");
+    	archivo = fopen("datos5.txt", "r");
     	if(archivo == NULL){
         	printf("Error al abrir el archivo para lectura.\n");
         	return;
@@ -107,7 +98,7 @@ void ordenados(){
 	printf("\n1: Ordenar archivo original | 2: Ordenar archivo nuevo\nIngrese su opcion: ");
     scanf("%d", &opcion);
     if(opcion==1){
-	    archivo = fopen("datos.txt", "r");
+	    archivo = fopen("datos5.txt", "r");
 	    if(archivo == NULL) {
 	        printf("Error al abrir el archivo para lectura.\n");
 	        return;
@@ -127,7 +118,7 @@ void ordenados(){
     }
     fclose(archivo);
     int i, j;
-    printf("\n1: Ordenar por nombre y apellido | 2: Ordenar por DNI\nIngrese su opcion: ");
+    printf("\n1: Ordenar por apellido y nombre | 2: Ordenar por DNI\nIngrese su opcion: ");
     scanf("%d", &opcion);
     if(opcion == 1){
         for( i = 0 ; i < cant - 1 ; i++ ) {
@@ -174,7 +165,7 @@ void ordenados(){
     }
     printf("\nDatos ordenados por "); 
     if(opcion==1){
-        printf("nombre y apellido");
+        printf("apellido y nombre");
     }
     else if(opcion==2){
         printf("DNI");
@@ -187,7 +178,7 @@ void ordenados(){
 }
 
 int main(int argc, char** argv){
-    int opcion, usado=0;;
+    int opcion, usado=0;
     do{
         printf("1: Cargar datos | 2: Leer datos | 3: Mostrar datos ordenados | 4: Terminar programa\nIngrese su opcion: ");
         scanf("%d", &opcion);
