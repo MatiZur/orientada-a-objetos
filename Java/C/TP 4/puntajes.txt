@@ -1,0 +1,11 @@
+Julian 3
+Agustin 5
+Leandro 1
+Santino 1
+Rodrigo 6
+Octavio 9
+Matias 15
+Tomas 14
+Felipe 10
+Santiago 10
+Sebastian 0
