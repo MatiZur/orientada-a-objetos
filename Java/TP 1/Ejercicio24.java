@@ -7,6 +7,7 @@ public class Ejercicio24{
 		Random random = new Random();
 		int[] numeros = {random.nextInt(100) + 1, random.nextInt(100) + 1, random.nextInt(100) + 1, random.nextInt(100) + 1, random.nextInt(100) + 1};
 		int ingresado, intentos = 0, encontrados = 0, restantes = 5, dif, cercaMen = 999, cercaMay = 999;
+		boolean encontrado = false;
 		System.out.print("Bienvenido a Adivinar el Número... versión 2. Se van a generar 5 números del 1 al 100 y tu objetivo es adivinarlos. ¡Buena suerte!\n\n");
 		do{
 			System.out.print("Ingrese un número: ");
@@ -22,12 +23,19 @@ public class Ejercicio24{
 				else if(ingresado == numero){
 					encontrados++;
 					restantes--;
-					numero = 999;
+					encontrado = true;
 				}
 				else if(ingresado > numero){
 					dif = ingresado - numero;
 					if(dif < cercaMen){
 						cercaMen = dif;
+					}
+				}
+			}
+			if(encontrado){
+				for(int i = 0 ; i < numeros.length ; i++){
+					if(ingresado == numeros[i]){
+						numeros[i] = 999;
 					}
 				}
 			}
